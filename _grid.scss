@@ -1,0 +1,49 @@
+%cf {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%group {
+  @extend %cf;
+  @if $small-gutter {
+    padding: $gutter/2;
+    }
+  @media (min-width: $break) {
+    @if $big-gutter {
+      padding: $gutter/2;
+    }
+  }
+}
+
+@function build ($num) {
+  $grid: percentage($num/$grid-num);
+  @if $small-gutter {
+      @return calc(#{$grid} - (#{$gutter}/#{$gutter-mod}));
+    }
+  @else {
+      @return calc(#{$grid});
+    }
+
+}
+
+@function build-large ($num) {
+  $grid: percentage($num/$grid-num);
+  @return calc(#{$grid} - #{$gutter});
+}
+
+@mixin grid($d: $grid-num, $m:$grid-num  ) {
+  float: left;
+  width: build($m);
+  @if $small-gutter {
+    margin: $gutter/(2*$gutter-mod);
+    }
+  @media (min-width: $break) {
+    width: build-large($d);
+    @if $big-gutter{
+    margin: $gutter/2;
+    }
+  }
+}
