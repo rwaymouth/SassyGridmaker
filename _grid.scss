@@ -1,3 +1,13 @@
+// Grid Settings
+
+$gutter: 1em;
+$gutter-mod: 1; // Simple way to change gutter proportions at smaller screen sizes.
+$grid-num: 12;
+
+$small-gutter: true;
+$big-gutter: true;
+
+
 %cf {
   &:after {
     content: "";
